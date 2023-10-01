@@ -1,0 +1,18 @@
+name: Send Notification Example
+
+on:
+  insert:
+    tables:
+      - users
+  delete:
+    tables:
+      - users
+
+jobs:
+  - name: Send Notification
+    steps:
+      - name: Run send_notification.sh script
+        shell: bash
+        # run: ./send_notification.sh
+        run: |
+          echo "Hello World"
