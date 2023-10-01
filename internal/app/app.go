@@ -72,6 +72,23 @@ func PollEventLog(db *sql.DB, config config.Config, eventChan chan<- string) {
 	}
 }
 
+func CreatedEventLogTable(db *sql.DB) error {
+	_, err := db.Exec(`
+	CREATE TABLE IF NOT EXISTS event_log (
+		id bigint unsigned NOT NULL AUTO_INCREMENT,
+		event_type enum('insert','update','delete') NOT NULL,
+		table_name varchar(255) NOT NULL,
+		created_at timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+		PRIMARY KEY (id)
+	  )
+	`)
+	if err != nil {
+		return fmt.Errorf("error creating event log table: %v", err)
+	}
+
+	return nil
+}
+
 func CreateTriggers(db *sql.DB, config config.Config) error {
 	triggerTemplate := "CREATE TRIGGER IF NOT EXISTS `%s` " +
 		"AFTER %s ON `%s`" +
