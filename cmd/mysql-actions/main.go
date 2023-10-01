@@ -28,7 +28,7 @@ func main() {
 	}
 	defer db.Close()
 
-	app.CreatedEventLogTable(db)
+	app.CreateEventLogTable(db)
 	app.CreateTriggers(db, config)
 
 	eventChan := make(chan string)

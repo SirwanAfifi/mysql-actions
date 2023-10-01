@@ -72,7 +72,7 @@ func PollEventLog(db *sql.DB, config config.Config, eventChan chan<- string) {
 	}
 }
 
-func CreatedEventLogTable(db *sql.DB) error {
+func CreateEventLogTable(db *sql.DB) error {
 	_, err := db.Exec(`
 	CREATE TABLE IF NOT EXISTS event_log (
 		id bigint unsigned NOT NULL AUTO_INCREMENT,
