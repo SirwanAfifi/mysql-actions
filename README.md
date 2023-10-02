@@ -27,6 +27,17 @@ This then prints "Hello World" when a new user is created or deleted.
 
 ## Running
 
+Make sure you have a MySQL server running and you have set the these environment variables in a `.env` file:
+
+```bash
+MYSQL_USER=
+MYSQL_PASSWORD=
+MYSQL_HOST=
+MYSQL_DB=
+```
+
+Then run the following command to start the application:
+
 ```bash
 > go run ./cmd/mysql-actions/main.go
 ```
