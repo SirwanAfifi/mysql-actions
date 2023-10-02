@@ -30,3 +30,7 @@ This then prints "Hello World" when a new user is created or deleted.
 ```bash
 > go run ./cmd/mysql-actions/main.go
 ```
+
+## How it works
+
+The application basically uses MySQL triggers. Upon startup, it creates a table called `event_log` along with triggers for each table specified in the YAML file. When a row is either inserted or deleted from the tables, the corresponding trigger inserts a new record to the `event_log`. Subsequently, the application scans the `event_log` at regular intervals for new entries and executes the script delineated in the YAML file.
